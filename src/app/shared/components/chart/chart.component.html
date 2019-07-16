@@ -1,0 +1,21 @@
+<button mat-raised-button (click)="updateFromParent()">
+      <mat-icon>edit</mat-icon>UPDATE
+    </button>
+
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>EXPORT
+</button>
+
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="exportChartLocal()">
+    <mat-icon>image</mat-icon>
+    <span>PNG</span>
+  </button>
+	<button mat-menu-item (click)="exportChartLocal('application/pdf')">
+    <mat-icon>picture_as_pdf</mat-icon>
+    <span>PDF</span>
+  </button>
+</mat-menu>
+
+<highcharts-chart [Highcharts]="highcharts" [constructorType]="chartConstructor" [options]="chartOptions" [callbackFunction]="chartCallback"
+ [update]="updateFlag$ | async" (updateChange)="onUpdateChange($event)" [oneToOne]="oneToOneFlag" style="width: 100%; display: block;"></highcharts-chart>
